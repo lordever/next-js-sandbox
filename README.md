@@ -19,3 +19,6 @@ Each branch showcases a specific topic or functionality.
 ```bash
 npm install
 npm run dev
+
+> Note: This project uses `next.config.mjs` (ESM format) for configuration.
+> Netlify adapter is imported via `import { withNetlify } from '@netlify/next'`.

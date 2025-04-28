@@ -20,7 +20,7 @@ export const metadata = {
 
 export default function RootLayout({children}: { children: ReactNode }) {
     return (
-        <html lang="en" className={redHatDisplay.className}>
+        <html lang="en" className={redHatDisplay.variable}>
         <body className="bg-gray-50 text-gray-900">
             <Navbar/>
             <main className="container mx-auto p-4">{children}</main>

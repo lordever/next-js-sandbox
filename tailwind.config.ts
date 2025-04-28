@@ -8,7 +8,9 @@ const config: Config = {
     ],
     theme: {
         extend: {
-
+            fontFamily: {
+                sans: ['var(--font-red-hat-display)'],
+            }
         },
     },
     plugins: [],

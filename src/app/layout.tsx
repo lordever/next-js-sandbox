@@ -1,16 +1,22 @@
-import Navbar from '@/components/navbar/navbar.component';
 import 'react-toastify/dist/ReactToastify.css';
 import 'photoswipe/dist/photoswipe.css';
 import '@/assets/styles/global.css';
-import {Red_Hat_Display} from 'next/font/google';
+import {Space_Mono, Lexend_Deca} from 'next/font/google';
 import {ReactNode} from "react";
 
 import '../assets/styles/global.css'
 
-const redHatDisplay = Red_Hat_Display({
+const spaceMono = Space_Mono({
     subsets: ['latin'],
     display: 'swap',
-    variable: '--font-red-hat-display',
+    weight: '400',
+    variable: '--font-space-mono',
+});
+
+const lexendDeca = Lexend_Deca({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-lexend-deca',
 });
 
 export const metadata = {
@@ -20,9 +26,8 @@ export const metadata = {
 
 export default function RootLayout({children}: { children: ReactNode }) {
     return (
-        <html lang="en" className={redHatDisplay.variable}>
-        <body className="bg-gray-50 text-gray-900">
-            <Navbar/>
+        <html lang="en" className={`${spaceMono.variable} ${lexendDeca.variable}`}>
+        <body>
             <main className="container mx-auto p-4">{children}</main>
         </body>
         </html>

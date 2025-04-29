@@ -5,6 +5,7 @@ import {Space_Mono, Lexend_Deca} from 'next/font/google';
 import {ReactNode} from "react";
 
 import '../assets/styles/global.css'
+import Header from "@/components/header/header.component";
 
 const spaceMono = Space_Mono({
     subsets: ['latin'],
@@ -27,7 +28,8 @@ export const metadata = {
 export default function RootLayout({children}: { children: ReactNode }) {
     return (
         <html lang="en" className={`${spaceMono.variable} ${lexendDeca.variable}`}>
-        <body>
+        <body className='bg-white'>
+            <Header />
             <main className="container mx-auto p-4">{children}</main>
         </body>
         </html>

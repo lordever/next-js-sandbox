@@ -1,0 +1,35 @@
+.hamburger {
+    @apply cursor-pointer w-5 h-4 relative transition-all duration-200;
+}
+
+.hamburgerTop,
+.hamburgerMiddle,
+.hamburgerBottom {
+    @apply absolute w-5 h-1 bg-yellow transition-all duration-500;
+    top: 0;
+    left: 0;
+}
+
+.hamburgerMiddle {
+    transform: translateY(7px);
+}
+
+.hamburgerBottom {
+    transform: translateY(14px);
+}
+
+.open {
+    transform: rotate(90deg);
+}
+
+.open .hamburgerTop {
+    transform: rotate(45deg) translateY(6px) translateX(6px);
+}
+
+.open .hamburgerMiddle {
+    display: none;
+}
+
+.open .hamburgerBottom {
+    transform: rotate(-45deg) translateY(6px) translateX(-6px);
+}

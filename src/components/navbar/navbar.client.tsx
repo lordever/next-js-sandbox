@@ -10,7 +10,7 @@ const NavbarClient = () => {
     const pathname = usePathname();
 
     return (
-        <FmStack direction='row' justify='justify-between' className='w-full'>
+        <FmStack direction='row' justify='justify-between' className='md:flex hidden w-full'>
             <FmStack direction='row' align='items-center' className='gap-8'>
                 <FmLink href='/about' active={pathname === '/about'}>About</FmLink>
                 <FmLink href='/locations' active={pathname === '/locations'}>Location</FmLink>

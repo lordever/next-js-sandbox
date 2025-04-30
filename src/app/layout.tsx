@@ -1,11 +1,12 @@
 import 'react-toastify/dist/ReactToastify.css';
 import 'photoswipe/dist/photoswipe.css';
 import '@/assets/styles/global.css';
-import {Space_Mono, Lexend_Deca} from 'next/font/google';
+import {Lexend_Deca, Space_Mono} from 'next/font/google';
 import {ReactNode} from "react";
 
 import '../assets/styles/global.css'
 import Header from "@/components/header/header.component";
+import DrawerProvider from "@/provider/drawer.provider";
 
 const spaceMono = Space_Mono({
     subsets: ['latin'],
@@ -28,9 +29,11 @@ export const metadata = {
 export default function RootLayout({children}: { children: ReactNode }) {
     return (
         <html lang="en" className={`${spaceMono.variable} ${lexendDeca.variable}`}>
-        <body className='bg-white'>
-            <Header />
-            <main className="container mx-auto p-4">{children}</main>
+        <body className="bg-white">
+            <DrawerProvider>
+                <Header/>
+                <main className="container mx-auto p-4">{children}</main>
+            </DrawerProvider>
         </body>
         </html>
     );

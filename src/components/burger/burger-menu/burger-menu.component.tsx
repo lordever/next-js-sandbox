@@ -9,10 +9,9 @@ interface BurgerMenuProps {
 const BurgerMenu: FC<BurgerMenuProps> = ({open, onClick}) => {
     return (
         <button
-            id="menu-btn"
             type="button"
             onClick={onClick}
-            className={`z-40 self-center focus:outline-none ${open ? styles.open : ''} ${styles.hamburger}`}
+            className={`z-40 block md:hidden self-center focus:outline-none ${open ? styles.open : ''} ${styles.hamburger}`}
         >
             <span className={styles.hamburgerTop}></span>
             <span className={styles.hamburgerMiddle}></span>

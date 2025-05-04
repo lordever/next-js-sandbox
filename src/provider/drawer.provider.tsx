@@ -1,10 +1,10 @@
 'use client'
 
-import {useState} from 'react'
+import {memo, useState} from 'react'
 import {DrawerContext, DrawerVariant} from '@/context/drawer.context'
 import NavbarDrawer from '@/components/navbar/navbar-drawer/navbar-drawer.component'
 
-export default function DrawerProvider({children}: { children: React.ReactNode }) {
+const DrawerProvider = ({children}: { children: React.ReactNode }) => {
     const [variant, setVariant] = useState<DrawerVariant | null>(null)
 
     const openDrawer = (v: DrawerVariant) => setVariant(v)
@@ -12,8 +12,10 @@ export default function DrawerProvider({children}: { children: React.ReactNode }
 
     return (
         <DrawerContext.Provider value={{variant, openDrawer, closeDrawer}}>
-            <NavbarDrawer open={variant === 'navbar'} onClose={closeDrawer}/>
             {children}
+            <NavbarDrawer open={variant === 'navbar'} onClose={closeDrawer}/>
         </DrawerContext.Provider>
     )
 }
+
+export default memo(DrawerProvider);

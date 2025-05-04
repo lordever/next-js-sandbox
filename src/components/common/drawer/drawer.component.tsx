@@ -1,12 +1,17 @@
+'use client';
+
 import React, {FC, memo, PropsWithChildren} from 'react';
 import clsx from 'clsx';
+import {useDisableBodyScroll} from "@/hooks/useDiasbleBodyScroll";
 
 interface FmDrawerProps extends PropsWithChildren {
     open: boolean;
     onClose?: () => void;
 }
 
-const FmDrawer: FC<FmDrawerProps> = ({ children, open, onClose }) => {
+const FmDrawer: FC<FmDrawerProps> = ({children, open, onClose}) => {
+    useDisableBodyScroll(open);
+
     return (
         <>
             <div

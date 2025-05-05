@@ -32,7 +32,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
         <body className="bg-white">
             <DrawerProvider>
                 <Header/>
-                <main className="container mx-auto p-4">{children}</main>
+                <main>{children}</main>
             </DrawerProvider>
         </body>
         </html>

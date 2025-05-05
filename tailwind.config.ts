@@ -8,6 +8,9 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            screens: {
+                lg: '1535px'
+            },
             fontFamily: {
                 sans: ['var(--font-space-mono)'],
                 lexend: ['var(--font-lexend-deca)']

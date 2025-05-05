@@ -2,7 +2,7 @@ import React, {FC, memo, PropsWithChildren} from 'react';
 import cn from "classNames";
 
 interface ButtonProps extends PropsWithChildren {
-    onClick: () => void;
+    onClick?: () => void;
     classNames?: string;
     variant?: 'filled'
 }

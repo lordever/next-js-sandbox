@@ -1,7 +1,6 @@
 import React from 'react';
 import Line from "@/components/common/line/line.component";
 import FmButton from "@/components/common/button/button.component";
-import Circle from "@/components/common/circle/circle.component";
 import ArrowLine from "@/components/arrow-line/arrow-line.component";
 import HeroImage from "@/components/home/hero/hero-image.component";
 import HeroCircles from "@/components/home/hero/hero-circles.component";

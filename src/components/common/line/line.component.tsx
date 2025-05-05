@@ -1,8 +1,10 @@
 import React, {FC} from 'react';
+import clsx from 'classNames';
 
 interface LineProps {
     width: number;
     rotate?: number;
+    color?: 'yellow' | 'lightGrey'
     border?: {
         topRight?: number;
         topLeft?: number;
@@ -11,7 +13,13 @@ interface LineProps {
     };
 }
 
-const Line: FC<LineProps> = ({ width, rotate = 0, border }) => {
+const Line: FC<LineProps> = ({color = 'yellow', width, rotate = 0, border}) => {
+    const classes = clsx(
+        'h-[15px]',
+        color === 'yellow' ? 'bg-yellow' : '',
+        color === 'lightGrey' ? 'bg-light-grey' : ''
+    )
+
     const borderRadiusStyle: React.CSSProperties = {
         borderTopRightRadius: border?.topRight,
         borderTopLeftRadius: border?.topLeft,
@@ -21,7 +29,7 @@ const Line: FC<LineProps> = ({ width, rotate = 0, border }) => {
 
     return (
         <div
-            className="h-[15px] bg-yellow"
+            className={classes}
             style={{
                 width: `${width}px`,
                 transform: `rotate(${rotate}deg)`,

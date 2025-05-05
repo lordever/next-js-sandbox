@@ -16,7 +16,7 @@ const FmTextStack: FC<FmTextStackProps> = ({title, description, gap = 27}) => {
     }, [title]);
 
     return (
-        <div className='flex flex-col text-center md:text-left' style={{gap}}>
+        <div className='flex flex-col text-center sm:text-left' style={{gap}}>
             {renderTitle}
             <p className='text-body1 text-dim-grey font-lexend'>{description}</p>
         </div>

@@ -13,7 +13,7 @@ const HomeFeatureContent: FC<PropsWithChildren> = ({children}) => (
 
 const HomeFeaturesMobile = () => {
     return (
-        <div className='pt-[120px] px-8'>
+        <section className='pt-[120px] px-8'>
             <div className="flex flex-col gap-12 justify-center">
                 <HomeFeatureContent>
                     <Image src={LocateIcon} alt='locate' className='w-14 h-14'/>
@@ -42,7 +42,7 @@ const HomeFeaturesMobile = () => {
                     />
                 </HomeFeatureContent>
             </div>
-        </div>
+        </section>
     );
 };
 

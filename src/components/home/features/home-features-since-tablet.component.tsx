@@ -8,7 +8,7 @@ import FmTextStack from "@/components/common/text-stack/text-stack.component";
 
 const HomeFeaturesSinceTablet = () => {
     return (
-        <div className='relative lg:pt-[98px]'>
+        <section className='relative lg:pt-[98px]'>
             <div className='hidden lg:block'>
                 <Line width={974} color='lightGrey'/>
             </div>
@@ -48,7 +48,7 @@ const HomeFeaturesSinceTablet = () => {
                     />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

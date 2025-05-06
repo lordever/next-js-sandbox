@@ -1,5 +1,5 @@
 import React from 'react';
-import Line from "@/components/common/line/line.component";
+import FmLine from "@/components/common/line/line.component";
 import Image from "next/image";
 import LocateIcon from '@/assets/icons/locate.svg'
 import RideIcon from '@/assets/icons/ride.svg'
@@ -10,11 +10,11 @@ const HomeFeaturesSinceTablet = () => {
     return (
         <section className='relative lg:pt-[98px]'>
             <div className='hidden lg:block'>
-                <Line width={974} color='lightGrey'/>
+                <FmLine width={974} color='lightGrey'/>
             </div>
 
             <div className='hidden absolute left-[145px] sm:block lg:hidden'>
-                <Line width={513} rotate={90} color='lightGrey'/>
+                <FmLine width={513} rotate={90} color='lightGrey'/>
             </div>
 
             <div className="flex flex-col lg:flex-row lg:gap-[284px] sm:gap-[74px] sm:absolute

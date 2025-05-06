@@ -13,7 +13,7 @@ interface LineProps {
     };
 }
 
-const Line: FC<LineProps> = ({color = 'yellow', width, rotate = 0, border}) => {
+const FmLine: FC<LineProps> = ({color = 'yellow', width, rotate = 0, border}) => {
     const classes = clsx(
         'h-[15px]',
         color === 'yellow' ? 'bg-yellow' : '',
@@ -40,4 +40,4 @@ const Line: FC<LineProps> = ({color = 'yellow', width, rotate = 0, border}) => {
     );
 };
 
-export default Line;
+export default FmLine;

@@ -2,7 +2,7 @@ import React from 'react';
 import TelemetryImg from "@/assets/images/telemetry.jpg";
 import NearYouImg from "@/assets/images/near-you.jpg";
 import PaymentsImg from "@/assets/images/payments.jpg";
-import HighlightItem from "@/components/home/highlights/highlight-item.component";
+import HighlightItem from "@/components/highlight-item/highlight-item.component";
 
 const Highlights = () => {
     return (

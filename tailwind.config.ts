@@ -24,9 +24,11 @@ const config: Config = {
             },
             colors: {
                 'yellow': '#FCB72B',
+                'steel': '#333A44',
                 'dark-navy': '#495567',
                 'dim-grey': '#939CAA',
                 'light-grey': '#E5ECF4',
+                'light-grey-transparent': '#E5ECF41A',
                 'snow': '#F2F5F9',
                 'light-yellow': '#FFF4DF'
             }

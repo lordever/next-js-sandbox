@@ -1,5 +1,5 @@
 import React from 'react';
-import Line from "@/components/common/line/line.component";
+import FmLine from "@/components/common/line/line.component";
 import FmButton from "@/components/common/button/button.component";
 import ArrowLine from "@/components/arrow-line/arrow-line.component";
 import HeroImage from "@/components/home/hero/hero-image.component";
@@ -17,7 +17,7 @@ const HomeHero = () => {
                 </h1>
 
                 <div className='hidden lg:block lg:absolute lg:top-[201px] lg:-left-[165px]'>
-                    <Line width={203}/>
+                    <FmLine width={203}/>
                 </div>
 
                 <p className='lg:absolute lg:top-[152px] lg:left-[95px] lg:w-[405px] lg:text-left font-lexend

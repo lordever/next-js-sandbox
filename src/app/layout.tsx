@@ -7,6 +7,7 @@ import {ReactNode} from "react";
 import '../assets/styles/global.css'
 import Header from "@/components/header/header.component";
 import DrawerProvider from "@/provider/drawer.provider";
+import Footer from "@/components/footer/footer.component";
 
 const spaceMono = Space_Mono({
     subsets: ['latin'],
@@ -33,6 +34,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
             <DrawerProvider>
                 <Header/>
                 <main className='overflow-x-hidden'>{children}</main>
+                <Footer />
             </DrawerProvider>
         </body>
         </html>

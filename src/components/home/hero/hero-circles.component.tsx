@@ -1,12 +1,12 @@
 import React from 'react';
-import Circle from "@/components/common/circle/circle.component";
+import FmCircle from "@/components/common/circle/circle.component";
 
 const HeroCircles = () => {
     return (
         <div className='flex flex-row gap-8'>
-            <Circle/>
-            <Circle/>
-            <Circle variant='filled'/>
+            <FmCircle/>
+            <FmCircle/>
+            <FmCircle variant='filled'/>
         </div>
     );
 };

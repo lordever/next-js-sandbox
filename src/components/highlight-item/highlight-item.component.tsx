@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import Image, {StaticImageData} from "next/image";
 import FmTextStack from "@/components/common/text-stack/text-stack.component";
-import Circle from "@/components/common/circle/circle.component";
+import FmCircle from "@/components/common/circle/circle.component";
 
 interface HighlightItemProps {
     title: string;
@@ -33,7 +33,7 @@ const HighlightItem = ({ title, description, image, imageAlt, reverse = false }:
             >
                 {reverse && (
                     <div className="hidden lg:block">
-                        <Circle size="hg" variant="filled" color="grey" />
+                        <FmCircle size="hg" variant="filled" color="grey" />
                     </div>
                 )}
 
@@ -47,7 +47,7 @@ const HighlightItem = ({ title, description, image, imageAlt, reverse = false }:
 
                 {!reverse && (
                     <div className="hidden lg:block">
-                        <Circle size="hg" variant="filled" color="grey" />
+                        <FmCircle size="hg" variant="filled" color="grey" />
                     </div>
                 )}
             </div>

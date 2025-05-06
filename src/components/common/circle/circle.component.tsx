@@ -4,19 +4,22 @@ import clsx from 'classNames';
 interface CircleProps {
     variant?: 'outlined' | 'filled'
     size?: 'sm' | 'hg'
-    color?: 'white' | 'grey'
+    color?: 'white' | 'grey' | 'grey-transparent'
 }
 
-const Circle: FC<CircleProps> = ({variant = 'outlined', size = 'sm', color = 'white'}) => {
+const FmCircle: FC<CircleProps> = ({variant = 'outlined', size = 'sm', color = 'white'}) => {
     const classes = clsx(
         'rounded-full',
         size === 'sm' ? 'w-[62px] h-[62px]' : '',
         size === 'hg' ? 'w-[445px] h-[445px]' : '',
-        variant === 'outlined' ? 'border-[3px]' : '',
+        variant === 'outlined' && size === 'sm' ? 'border-[3px]' : '',
+        variant === 'outlined' && size === 'hg' ? 'border-[15px]' : '',
         variant === 'outlined' && color === 'white'? 'border-white' : '',
         variant === 'outlined' && color === 'grey'? 'border-light-grey' : '',
+        variant === 'outlined' && color === 'grey-transparent'? 'border-light-grey-transparent' : '',
         variant === 'filled' && color === 'white' ? 'bg-white' : '',
         variant === 'filled' && color === 'grey' ? 'bg-light-grey' : '',
+        variant === 'filled' && color === 'grey-transparent' ? 'bg-light-grey-transparent' : '',
     )
 
     return (
@@ -24,4 +27,4 @@ const Circle: FC<CircleProps> = ({variant = 'outlined', size = 'sm', color = 'wh
     );
 };
 
-export default Circle;
+export default FmCircle;

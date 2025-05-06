@@ -14,9 +14,9 @@ import FmLink from "@/components/common/link/link.component";
 const Footer = () => {
     return (
         <footer>
-            <div className="bg-dark-navy relative overflow-hidden h-[320px] mt-[200px] sm:h-[300px]">
-                <div className='flex justify-between items-center px-[165px] pt-[105px]'>
-                    <h2 className='text-h2 text-white max-w-[415px]'>
+            <div className="bg-dark-navy relative overflow-hidden mt-[200px]">
+                <div className='flex flex-col justify-center gap-10 md:flex-row md:justify-between items-center px-[155px] py-[62px] md:px-[165px] md:py-[102px]'>
+                    <h2 className='text-h2 text-white max-w-[415px] text-center md:text-left'>
                         Sign up and Scoot off today
                     </h2>
 
@@ -29,10 +29,10 @@ const Footer = () => {
                 </div>
 
 
-                <div className="flex flex-row gap-14 absolute lg:top-[150px] lg:-right-[230px]">
-                    <FmCircle size='hg' color='grey-transparent'/>
-                    <FmCircle size='hg' color='grey-transparent'/>
-                    <FmCircle size='hg' color='grey-transparent' variant='filled'/>
+                <div className="flex flex-row gap-14 absolute top-0 lg:top-[150px] lg:-right-[230px]">
+                    <FmCircle size='lg' color='grey-transparent'/>
+                    <FmCircle size='lg' color='grey-transparent'/>
+                    <FmCircle size='lg' color='grey-transparent' variant='filled'/>
                 </div>
             </div>
 

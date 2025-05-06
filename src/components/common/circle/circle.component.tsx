@@ -3,7 +3,7 @@ import clsx from 'classNames';
 
 interface CircleProps {
     variant?: 'outlined' | 'filled'
-    size?: 'sm' | 'hg'
+    size?: 'sm' | 'lg' | 'hg'
     color?: 'white' | 'grey' | 'grey-transparent'
 }
 
@@ -11,8 +11,10 @@ const FmCircle: FC<CircleProps> = ({variant = 'outlined', size = 'sm', color = '
     const classes = clsx(
         'rounded-full',
         size === 'sm' ? 'w-[62px] h-[62px]' : '',
+        size === 'lg' ? 'w-[347px] h-[347px]' : '',
         size === 'hg' ? 'w-[445px] h-[445px]' : '',
         variant === 'outlined' && size === 'sm' ? 'border-[3px]' : '',
+        variant === 'outlined' && size === 'lg' ? 'border-[15px]' : '',
         variant === 'outlined' && size === 'hg' ? 'border-[15px]' : '',
         variant === 'outlined' && color === 'white'? 'border-white' : '',
         variant === 'outlined' && color === 'grey'? 'border-light-grey' : '',

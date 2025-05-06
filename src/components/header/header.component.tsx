@@ -8,7 +8,7 @@ import BurgerClient from "@/components/burger/burger.client";
 
 const Header = () => {
     return (
-        <header className='w-full h-[96px] bg-white py-[22px] lg:px-[165px] px-[39px] '>
+        <header className='w-full bg-white py-[22px] lg:px-[165px] px-[39px] '>
             <FmStack direction='row' align='items-center' className='gap-[58px]'>
                 <BurgerClient/>
 

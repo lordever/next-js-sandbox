@@ -15,7 +15,8 @@ const Footer = () => {
     return (
         <footer>
             <div className="bg-dark-navy relative overflow-hidden mt-[200px]">
-                <div className='flex flex-col justify-center gap-10 md:flex-row md:justify-between items-center px-[155px] py-[62px] md:px-[165px] md:py-[102px]'>
+                <div className='flex flex-col justify-center gap-10 md:flex-row md:justify-between
+                                items-center sm:px-[155px] py-[62px] md:px-[165px] md:py-[102px]'>
                     <h2 className='text-h2 text-white max-w-[415px] text-center md:text-left'>
                         Sign up and Scoot off today
                     </h2>
@@ -38,17 +39,17 @@ const Footer = () => {
 
 
             <div className='w-full bg-steel py-[22px] lg:px-[165px] px-[39px]'>
-                <div className='flex flex-row items-center justify-between'>
-                    <div className="flex flex-row items-center gap-[58px]">
+                <div className='flex flex-col md:flex-row gap-[85px] items-center md:justify-between'>
+                    <div className="flex flex-col md:flex-row items-center gap-[41px] md:gap-[58px]">
                         <Link href='/'>
                             <Image src={logo} alt="logo" width={107} height={28} className='fill-white'/>
                         </Link>
 
-                        <FmStack direction='row' align='items-center' className='gap-8'>
+                        <div className='flex flex-col md:flex-row gap-4 md:gap-8 items-center'>
                             <FmLink href='/about'>About</FmLink>
                             <FmLink href='/locations'>Location</FmLink>
                             <FmLink href='/careers'>Careers</FmLink>
-                        </FmStack>
+                        </div>
                     </div>
 
                     <div className="flex flex-row gap-8">

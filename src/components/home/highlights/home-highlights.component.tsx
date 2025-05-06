@@ -4,7 +4,7 @@ import NearYouImg from "@/assets/images/near-you.jpg";
 import PaymentsImg from "@/assets/images/payments.jpg";
 import HighlightItem from "@/components/highlight-item/highlight-item.component";
 
-const Highlights = () => {
+const HomeHighlights = () => {
     return (
         <section className="flex flex-col gap-[120px] sm:gap-[128px] lg:gap-[160px] mt-[83px] sm:mt-[684px] md:px-[97px] lg:mt-[442px] lg:px-[165px]">
             <HighlightItem
@@ -30,4 +30,4 @@ const Highlights = () => {
     );
 };
 
-export default Highlights;
+export default HomeHighlights;

@@ -1,11 +1,11 @@
 import React from 'react';
-import Image from 'next/image';
-import HeroDesktopImg from '@/assets/images/home-hero-desktop.jpg';
-import HeroTabletImg from '@/assets/images/home-hero-tablet.jpg';
-import HeroMobileImg from '@/assets/images/home-hero-mobile.jpg';
 import {breakpoints} from "@/utils/breakpoint";
+import HeroDesktopImg from "@/assets/images/home-hero-desktop.jpg";
+import HeroTabletImg from "@/assets/images/home-hero-tablet.jpg";
+import Image from "next/image";
+import HeroMobileImg from "@/assets/images/home-hero-mobile.jpg";
 
-const HeroImage = () => {
+const AboutHeroImage = () => {
     return (
         <picture>
             {/*Desktop*/}
@@ -30,4 +30,4 @@ const HeroImage = () => {
     );
 };
 
-export default HeroImage;
+export default AboutHeroImage;

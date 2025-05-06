@@ -2,14 +2,21 @@ import React from 'react';
 import FmLine from "@/components/common/line/line.component";
 import FmButton from "@/components/common/button/button.component";
 import ArrowLine from "@/components/arrow-line/arrow-line.component";
-import HeroImage from "@/components/home/hero/hero-image.component";
-import HeroCircles from "@/components/home/hero/hero-circles.component";
+import HeroCircles from "@/components/hero-circles/hero-circles.component";
 import Arrow from "@/components/arrow/arrow.component";
+import HeroImage from "@/components/hero-image/hero-image.component";
+import HeroDesktopImg from '@/assets/images/home-hero-desktop.jpg';
+import HeroTabletImg from '@/assets/images/home-hero-tablet.jpg';
+import HeroMobileImg from '@/assets/images/home-hero-mobile.jpg';
 
 const HomeHero = () => {
     return (
         <section className='relative w-full overflow-hidden'>
-            <HeroImage/>
+            <HeroImage
+                desktopImg={HeroDesktopImg}
+                tabletImg={HeroTabletImg}
+                mobileImg={HeroMobileImg}
+            />
 
             <div className="flex flex-col gap-8 lg:block items-center absolute inset-0 top-[153px] lg:left-[165px] mx-auto md:px-[90px] z-30">
                 <h1 className='text-h1 text-white z-30 max-w-[500px] text-center lg:text-left'>

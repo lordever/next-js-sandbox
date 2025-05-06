@@ -18,11 +18,16 @@ const FmTextStack: FC<FmTextStackProps> = ({title, description, button, gap = 27
     }, [title]);
 
     return (
-        <div className='flex flex-col text-center sm:text-left' style={{gap}}>
+        <div className='flex flex-col justify-center items-center text-center md:justify-start
+                        md:items-start md:text-left'
+             style={{gap}}>
             {renderTitle}
             <p className='text-body1 text-dim-grey font-lexend'>{description}</p>
             {button && (
-                <FmButton onClick={button.onClick} classNames='self-baseline'>{button.text}</FmButton>
+                <div>
+                    <FmButton onClick={button.onClick}
+                              classNames='self-baseline'>{button.text}</FmButton>
+                </div>
             )}
         </div>
     );

@@ -32,7 +32,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
         <body className="bg-white">
             <DrawerProvider>
                 <Header/>
-                <main>{children}</main>
+                <main className='overflow-x-hidden'>{children}</main>
             </DrawerProvider>
         </body>
         </html>

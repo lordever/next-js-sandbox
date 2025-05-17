@@ -1,9 +1,7 @@
 import React, {FC, PropsWithChildren} from 'react';
 import Image from "next/image";
-import LocateIcon from "@/assets/icons/locate.svg";
-import RideIcon from "@/assets/icons/ride.svg";
-import ScooterIcon from "@/assets/icons/scooter.svg";
 import FmTextStack from "@/components/common/text-stack/text-stack.component";
+import {FeatureService} from "@/services/feature.service";
 
 const HomeFeatureContent: FC<PropsWithChildren> = ({children}) => (
     <div className='flex flex-col gap-8 justify-center items-center'>
@@ -11,36 +9,27 @@ const HomeFeatureContent: FC<PropsWithChildren> = ({children}) => (
     </div>
 );
 
-const HomeFeaturesMobile = () => {
+const HomeFeaturesMobile = async () => {
+    const service = new FeatureService();
+    const features = await service.getFeatures();
+
     return (
         <section className='pt-[120px] px-8'>
             <div className="flex flex-col gap-12 justify-center">
-                <HomeFeatureContent>
-                    <Image src={LocateIcon} alt='locate' className='w-14 h-14'/>
+                {features?.map((feature) => (
+                    <HomeFeatureContent key={feature._id}>
+                        <Image src={feature.imagePath}
+                               alt='feature'
+                               className='w-14 h-14'
+                               width={56}
+                               height={56}/>
 
-                    <FmTextStack
-                        title={{variant: 'h4', text: 'Locate with app'}}
-                        description="Use the app to find the nearest scooter to you. We are continuously placing scooters in the areas with most demand, so one should never be too far away. "
-                    />
-                </HomeFeatureContent>
-
-                <HomeFeatureContent>
-                    <Image src={RideIcon} alt='ride' className='w-14 h-14'/>
-
-                    <FmTextStack
-                        title={{variant: 'h4', text: 'Pick your scooter'}}
-                        description="We show the most important info for the scooters closest to you. So you know how much charge they have left and can see roughly how much it will cost."
-                    />
-                </HomeFeatureContent>
-
-                <HomeFeatureContent>
-                    <Image src={ScooterIcon} alt='scooter' className='w-14 h-14'/>
-
-                    <FmTextStack
-                        title={{variant: 'h4', text: 'Enjoy the ride'}}
-                        description="Scan the QR code and the bike will unlock. Retract the cable lock, put on a helmet, and you’re off! Always lock bikes away from walkways and accessibility ramps."
-                    />
-                </HomeFeatureContent>
+                        <FmTextStack
+                            title={{variant: 'h4', text: `${feature.title}`}}
+                            description={feature.description}
+                        />
+                    </HomeFeatureContent>
+                ))}
             </div>
         </section>
     );

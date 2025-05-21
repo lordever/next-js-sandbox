@@ -1,17 +1,18 @@
 import React, {memo} from 'react';
-import Image, {StaticImageData} from "next/image";
+import Image from "next/image";
 import FmTextStack from "@/components/common/text-stack/text-stack.component";
 import FmCircle from "@/components/common/circle/circle.component";
 
 interface HighlightItemProps {
     title: string;
     description: string;
-    image: StaticImageData;
+    image: string;
     imageAlt: string;
     reverse?: boolean;
+    buttonText?: string;
 }
 
-const HighlightItem = ({ title, description, image, imageAlt, reverse = false }: HighlightItemProps) => {
+const HighlightItem = ({ title, description, image, imageAlt, buttonText, reverse = false }: HighlightItemProps) => {
     return (
         <div
             className={`flex flex-col gap-14 sm:items-center sm:justify-center md:flex-row ${
@@ -22,7 +23,7 @@ const HighlightItem = ({ title, description, image, imageAlt, reverse = false }:
                 <FmTextStack
                     title={{ variant: 'h2', text: title }}
                     description={description}
-                    button={{ text: 'Learn More' }}
+                    button={{ text: buttonText }}
                 />
             </div>
 

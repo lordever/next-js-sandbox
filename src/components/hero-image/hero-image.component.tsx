@@ -1,6 +1,6 @@
 import React from 'react';
 import Image, {StaticImageData} from "next/image";
-import {breakpoints} from "@/utils/breakpoint";
+import {breakpoints} from "@/utils/breakpoint.util";
 
 interface HeroImageProps {
     desktopImg: StaticImageData;

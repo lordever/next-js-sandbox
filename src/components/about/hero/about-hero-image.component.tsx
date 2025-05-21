@@ -1,5 +1,5 @@
 import React from 'react';
-import {breakpoints} from "@/utils/breakpoint";
+import {breakpoints} from "@/utils/breakpoint.util";
 import HeroDesktopImg from "@/assets/images/home-hero-desktop.jpg";
 import HeroTabletImg from "@/assets/images/home-hero-tablet.jpg";
 import Image from "next/image";

@@ -5,7 +5,7 @@ interface FmTextStackProps {
     title: { variant: 'h2' | 'h4', text: string };
     description: string;
     gap?: 24 | 27;
-    button?: { text: string, onClick?: () => void }
+    button?: { text?: string, onClick?: () => void }
 }
 
 const FmTextStack: FC<FmTextStackProps> = ({title, description, button, gap = 27}) => {
@@ -23,7 +23,7 @@ const FmTextStack: FC<FmTextStackProps> = ({title, description, button, gap = 27
              style={{gap}}>
             {renderTitle}
             <p className='text-body1 text-dim-grey font-lexend'>{description}</p>
-            {button && (
+            {button && button.text && (
                 <div>
                     <FmButton onClick={button.onClick}
                               classNames='self-baseline'>{button.text}</FmButton>

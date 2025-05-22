@@ -53,7 +53,9 @@ const NavbarClient = () => {
                 disabled={status === 'loading' || !providers}
                 onClick={handleAuthClick}
             >
-                <Spinner size={20} />
+                {status === 'loading' && (<Spinner/>)}
+                {status === 'authenticated' && ('Sign out')}
+                {status === 'unauthenticated' && ('Sign in')}
             </FmButton>
         </FmStack>
     );

@@ -38,13 +38,15 @@ const HighlightItem = ({ title, description, image, imageAlt, buttonText, revers
                     </div>
                 )}
 
-                <Image
-                    src={image}
-                    alt={imageAlt}
-                    className="rounded-full"
-                    width={445}
-                    height={445}
-                />
+                <div className="relative w-[311px] h-[311px] lg:w-[435px] lg:h-[435px]">
+                    <Image
+                        src={image}
+                        alt={imageAlt}
+                        fill
+                        className="rounded-full"
+                    />
+                </div>
+
 
                 {!reverse && (
                     <div className="hidden lg:block">

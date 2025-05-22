@@ -6,6 +6,7 @@ import FmLink from "@/components/common/link/link.component";
 import {usePathname} from "next/navigation";
 import FmButton from "@/components/common/button/button.component";
 import {getProviders, signIn, signOut, useSession} from "next-auth/react";
+import Spinner from "@/components/common/spinner/spinner.component";
 
 const NavbarClient = () => {
     const {data: session, status} = useSession();
@@ -22,6 +23,23 @@ const NavbarClient = () => {
         setAuthProviders();
     }, []);
 
+    useEffect(() => {
+        const fetchProviders = async () => {
+            const res = await getProviders();
+            setProviders(res);
+        };
+
+        fetchProviders();
+    }, []);
+
+    const handleAuthClick = async () => {
+        if (status === 'authenticated') {
+            await signOut();
+        } else if (status === 'unauthenticated' && providers?.google) {
+            await signIn(providers.google.id);
+        }
+    };
+
 
     return (
         <FmStack direction='row' justify='justify-between' className='md:flex hidden w-full'>
@@ -31,24 +49,12 @@ const NavbarClient = () => {
                 <FmLink href='/careers' active={pathname === '/careers'}>Careers</FmLink>
             </FmStack>
 
-            {status === 'unauthenticated'
-                && providers
-                && Object.values(providers).map((provider: any) => (
-                    <FmButton
-                        key={provider.id}
-                        onClick={() => signIn(provider.id)}>
-                        Sign In
-                    </FmButton>
-                ))
-            }
-
-            {status === 'authenticated' && (
-                <FmButton
-                    onClick={() => signOut()}>
-                    Sign Out
-                </FmButton>
-            )}
-
+            <FmButton
+                disabled={status === 'loading' || !providers}
+                onClick={handleAuthClick}
+            >
+                <Spinner size={20} />
+            </FmButton>
         </FmStack>
     );
 };

@@ -8,6 +8,8 @@ import '../assets/styles/global.css'
 import Header from "@/components/header/header.component";
 import DrawerProvider from "@/provider/drawer.provider";
 import Footer from "@/components/footer/footer.component";
+import {SessionProvider} from "next-auth/react";
+import AuthProvider from "@/components/auth-provider/auth-provider.component";
 
 const spaceMono = Space_Mono({
     subsets: ['latin'],
@@ -31,11 +33,13 @@ export default function RootLayout({children}: { children: ReactNode }) {
     return (
         <html lang="en" className={`${spaceMono.variable} ${lexendDeca.variable}`}>
         <body className="bg-white">
-            <DrawerProvider>
-                <Header/>
-                <main className='overflow-x-hidden'>{children}</main>
-                <Footer />
-            </DrawerProvider>
+            <AuthProvider>
+                <DrawerProvider>
+                    <Header/>
+                    <main className='overflow-x-hidden'>{children}</main>
+                    <Footer/>
+                </DrawerProvider>
+            </AuthProvider>
         </body>
         </html>
     );

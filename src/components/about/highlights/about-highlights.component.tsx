@@ -13,8 +13,8 @@ const AboutHighlights = async () => {
                     key={item._id}
                     title={item.title}
                     description={item.description}
-                    image={`/${item.imagePath}`}
-                    imageAlt="highlight"
+                    image={item.imagePath}
+                    imageAlt={item.imageAlt}
                     reverse={index % 2 !== 0}
                 />
             ))}

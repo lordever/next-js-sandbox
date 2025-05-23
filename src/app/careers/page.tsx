@@ -1,10 +1,17 @@
 import React from 'react';
+import SmallHero from "@/components/small-hero/small-hero.component";
+import CareersHighlights from "@/components/careers/highlights/careers-highlights.component";
+import JoinUs from "@/components/careers/join-us/join-us.component";
 
 const CareersPage = () => {
     return (
-        <h1 className='text-h1'>
-            Careers
-        </h1>
+        <>
+            <SmallHero title="Careers"/>
+
+            <CareersHighlights/>
+
+            <JoinUs/>
+        </>
     );
 };
 

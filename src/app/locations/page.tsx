@@ -1,10 +1,11 @@
 import React from 'react';
+import SmallHero from "@/components/small-hero/small-hero.component";
 
 const LocationsPage = () => {
     return (
-        <h1 className='text-h1'>
-           Locations
-        </h1>
+        <>
+            <SmallHero title="Locations"/>
+        </>
     );
 };
 

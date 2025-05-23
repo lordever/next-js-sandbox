@@ -5,7 +5,7 @@ import HeroTabletImg from "@/assets/images/home-hero-tablet.jpg";
 import Image from "next/image";
 import HeroMobileImg from "@/assets/images/home-hero-mobile.jpg";
 
-const AboutHeroImage = () => {
+const smallHeroImage = () => {
     return (
         <picture>
             {/*Desktop*/}
@@ -30,4 +30,4 @@ const AboutHeroImage = () => {
     );
 };
 
-export default AboutHeroImage;
+export default smallHeroImage;

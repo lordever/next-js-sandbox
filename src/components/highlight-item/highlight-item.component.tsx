@@ -19,7 +19,7 @@ const HighlightItem = ({ title, description, image, imageAlt, buttonText, revers
                 reverse ? 'md:flex-row-reverse' : ''
             } lg:justify-between`}
         >
-            <div className="flex justify-center items-center max-w-full md:max-w-[573px] lg:max-w-[445px]">
+            <div className="flex justify-center items-center max-w-full md:min-w-[573px] lg:min-w-[445px]">
                 <FmTextStack
                     title={{ variant: 'h2', text: title }}
                     description={description}
@@ -29,7 +29,7 @@ const HighlightItem = ({ title, description, image, imageAlt, buttonText, revers
 
             <div
                 className={`flex flex-row justify-center items-center gap-16 ${
-                    reverse ? 'lg:-translate-x-[500px]' : 'lg:translate-x-[500px]'
+                    reverse ? 'lg:-translate-x-[250px]' : 'lg:translate-x-[250px]'
                 }`}
             >
                 {reverse && (

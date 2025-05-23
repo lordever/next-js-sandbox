@@ -1,0 +1,36 @@
+[
+  {
+    "category": "How it works",
+    "items": [
+      {
+        "title": "How do I download the app?",
+        "description": "To download the Scoot app, you can search “Scoot” in both the App and Google Play stores. An even simpler way to do it would be to click the relevant link at the bottom of this page and you’ll be re-directed to the correct page."
+      },
+      {
+        "title": "Can I find a nearby Scoots?",
+        "description": "Yes, use the app’s map feature to locate nearby Scoots in real-time, available in supported areas."
+      },
+      {
+        "title": "Do I need a license to ride?",
+        "description": "In most cities, a standard driver’s license is required. Please check your local regulations in the app before riding."
+      }
+    ]
+  },
+  {
+    "category": "Safe driving",
+    "items": [
+      {
+        "title": "Should I wear a helmet?",
+        "description": "Yes, please do! All cities have different laws. But we strongly strongly strongly recommend always wearing a helmet regardless of the local laws. We like you and we want you to be as safe as possible while Scooting."
+      },
+      {
+        "title": "How about the rules & regulations?",
+        "description": "Rules may vary by city. You can find local riding regulations directly in the app under the ‘Safety’ section."
+      },
+      {
+        "title": "What if I damage my Scoot?",
+        "description": "If your Scoot is damaged, report it immediately via the app. You may be held liable depending on the situation and coverage."
+      }
+    ]
+  }
+]

@@ -2,7 +2,7 @@ import React from 'react';
 import FmAccordion from "@/components/common/accordion/accordion.component";
 import {getFaq} from "@/utils/faq.util";
 
-const Faq = async () => {
+const AboutFaq = async () => {
 
     const faqItems = await getFaq();
 
@@ -32,4 +32,4 @@ const Faq = async () => {
     );
 };
 
-export default Faq;
+export default AboutFaq;

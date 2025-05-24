@@ -6,8 +6,7 @@ const CareersHighlights = async () => {
     const highlights = await getHighlights();
 
     return (
-        <section className="flex flex-col gap-[120px] sm:gap-[128px] lg:gap-[160px] md:px-[97px]
-                            lg:px-[165px] mt-[72px] sm:mt-[140px] lg:mt-[120px]">
+        <section className="flex flex-col gap-[120px] sm:gap-[128px] lg:gap-[160px] mt-[72px] sm:mt-[140px] lg:mt-[120px]">
             {highlights?.careers?.map((item, index) => (
                 <HighlightItem
                     key={item._id}

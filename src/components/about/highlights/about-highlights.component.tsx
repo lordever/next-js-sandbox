@@ -1,9 +1,9 @@
 import React from 'react';
 import HighlightItem from "@/components/highlight-item/highlight-item.component";
-import {getHighlightsCached} from "@/utils/highlight.util";
+import {getHighlights} from "@/utils/highlight.util";
 
 const AboutHighlights = async () => {
-    const highlights = await getHighlightsCached();
+    const highlights = await getHighlights();
 
     return (
         <section className="flex flex-col gap-[120px] sm:gap-[128px] lg:gap-[160px] md:px-[97px]

@@ -1,10 +1,11 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import FmAccordion from "@/components/common/accordion/accordion.component";
-import {getFaqCached} from "@/utils/faq.util";
+import {getFaq} from "@/utils/faq.util";
 
 const Faq = async () => {
 
-    const faqItems = await getFaqCached();
+    const faqItems = await getFaq();
+
     return (
         <div className='flex flex-col items-center justify-center gap-16 mt-[120px] px-10'>
 

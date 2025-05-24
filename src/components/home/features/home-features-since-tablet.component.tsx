@@ -2,10 +2,10 @@ import React from 'react';
 import FmLine from "@/components/common/line/line.component";
 import Image from "next/image";
 import FmTextStack from "@/components/common/text-stack/text-stack.component";
-import {getFeaturesCached} from "@/utils/feature.util";
+import {getFeatures} from "@/utils/feature.util";
 
 const HomeFeaturesSinceTablet = async () => {
-    const features = await getFeaturesCached();
+    const features = await getFeatures();
 
     return (
         <section className='relative lg:pt-[98px]'>

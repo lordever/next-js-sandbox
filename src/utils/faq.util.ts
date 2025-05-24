@@ -1,7 +1,9 @@
-import {cache} from "react";
-import {FaqService} from "@/services/faq.service";
+export const getFaq = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/api/faq`, {
+        next: { revalidate: +(process.env.NEXT_CACHE_REVALIDATE_IN_SECONDS ?? '3600')}
+    });
 
-export const getFaqCached = cache(async () => {
-    const service = new FaqService();
-    return await service.getFaq();
-});
+    const result = await res.json()
+
+    return result as unknown as FaqModel[];
+};

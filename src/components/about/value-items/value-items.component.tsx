@@ -1,9 +1,9 @@
 import React from 'react';
 import ValueItem from "@/components/value-item/value-item.component";
-import {getValuesCached} from "@/utils/value.util";
+import {getValues} from "@/utils/value.util";
 
 const AboutValueItems = async () => {
-    const values = await getValuesCached();
+    const values = await getValues();
 
     return (
         <div className='flex flex-col items-center gap-24 justify-center mt-[120px] px-[165px]'>

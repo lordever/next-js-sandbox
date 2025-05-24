@@ -1,7 +1,7 @@
 import React, {FC, PropsWithChildren} from 'react';
 import Image from "next/image";
 import FmTextStack from "@/components/common/text-stack/text-stack.component";
-import {getFeaturesCached} from "@/utils/feature.util";
+import {getFeatures} from "@/utils/feature.util";
 
 const HomeFeatureContent: FC<PropsWithChildren> = ({children}) => (
     <div className='flex flex-col gap-8 justify-center items-center'>
@@ -10,7 +10,7 @@ const HomeFeatureContent: FC<PropsWithChildren> = ({children}) => (
 );
 
 const HomeFeaturesMobile = async () => {
-    const features = await getFeaturesCached();
+    const features = await getFeatures();
 
     return (
         <section className='pt-[120px] px-8'>

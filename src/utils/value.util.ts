@@ -1,7 +1,11 @@
-import {cache} from "react";
-import {ValueService} from "@/services/value.service";
+import {ValueModel} from "@/models/value.model";
 
-export const getValuesCached = cache(async () => {
-    const service = new ValueService();
-    return await service.getValues();
-});
+export const getValues = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/api/values`, {
+        next: {revalidate: +(process.env.NEXT_CACHE_REVALIDATE_IN_SECONDS ?? '3600')}
+    });
+
+    const result = await res.json()
+
+    return result as unknown as ValueModel[];
+};

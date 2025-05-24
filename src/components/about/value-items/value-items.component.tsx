@@ -6,7 +6,7 @@ const AboutValueItems = async () => {
     const values = await getValues();
 
     return (
-        <div className='flex flex-col items-center gap-24 justify-center mt-[120px] px-[165px]'>
+        <div className='flex flex-col items-center gap-24 justify-center'>
             <h2 className='text-h2 text-dark-navy text-center'>
                 Our values
             </h2>

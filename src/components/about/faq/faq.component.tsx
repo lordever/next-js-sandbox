@@ -7,7 +7,7 @@ const AboutFaq = async () => {
     const faqItems = await getFaq();
 
     return (
-        <div className='flex flex-col items-center justify-center gap-16 mt-[120px] px-10'>
+        <div className='flex flex-col items-center justify-center gap-16'>
 
             <h2 className='text-h2 text-dark-navy'>FAQ</h2>
 

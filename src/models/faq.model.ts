@@ -1,4 +1,4 @@
-interface FaqModel {
+export interface FaqModel {
     _id: string;
     category: string;
     items: FaqItemModel[];

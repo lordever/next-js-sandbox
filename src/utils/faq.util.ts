@@ -1,9 +1,14 @@
-export const getFaq = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/api/faq`, {
-        next: { revalidate: +(process.env.NEXT_CACHE_REVALIDATE_IN_SECONDS ?? '3600')}
-    });
+import {FaqModel} from "@/models/faq.model";
 
-    const result = await res.json()
-
-    return result as unknown as FaqModel[];
+export const getFaq = async (): Promise<FaqModel[] | null> => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/api/faq`, {
+            next: { revalidate: +(process.env.NEXT_CACHE_REVALIDATE_IN_SECONDS ?? '3600') },
+        });
+        if (!res.ok) return null;
+        return (await res.json()) as FaqModel[];
+    } catch (e) {
+        console.error("getFaq error:", e);
+        return null;
+    }
 };

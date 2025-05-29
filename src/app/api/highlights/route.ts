@@ -9,7 +9,7 @@ export const GET = async () => {
         const highlights = await Highlight.findOne({}).lean();
 
         if (!highlights) {
-            return null;
+            return NextResponse.json({ message: 'No highlights found' }, { status: 404 });
         }
 
         return NextResponse.json(highlights);

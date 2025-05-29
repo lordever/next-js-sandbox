@@ -8,7 +8,7 @@ const CareersPage = () => {
     return (
         <>
             <SmallHero title="Careers"/>
-            <div className='flex flex-col gap-[72px] sm:gap-[140px] lg:gap-[120px] md:px-[97px] lg:px-[165px]'>
+            <div className='landing-container'>
                 <CareersHighlights/>
 
                 <CareersJoinUs/>

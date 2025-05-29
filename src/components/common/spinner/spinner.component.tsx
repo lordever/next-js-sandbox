@@ -1,10 +1,27 @@
 import React, {FC} from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-const Spinner: FC<{ loading?: boolean; size?: number }> = ({
-                                                               loading = true,
-                                                               size
-                                                           }) => {
+export enum FmSpinnerColorKeys {
+    WHITE = 'white',
+    YELLOW = 'yellow',
+}
+
+interface FmSpinnerProps {
+    loading?: boolean;
+    size?: number
+    color?: FmSpinnerColorKeys;
+}
+
+const COLOR_MAP: Record<FmSpinnerColorKeys, string> = {
+    [FmSpinnerColorKeys.WHITE]: '#fff',
+    [FmSpinnerColorKeys.YELLOW]: '#FCB72B',
+}
+
+const FmSpinner: FC<FmSpinnerProps> = ({
+                                           loading = true,
+                                           color = FmSpinnerColorKeys.WHITE,
+                                           size
+                                       }) => {
     return (
         <div
             style={{
@@ -15,7 +32,7 @@ const Spinner: FC<{ loading?: boolean; size?: number }> = ({
             }}
         >
             <ClipLoader
-                color="#fff"
+                color={COLOR_MAP[color]}
                 size={size}
                 loading={loading}
                 aria-label="Loading Spinner"
@@ -24,4 +41,4 @@ const Spinner: FC<{ loading?: boolean; size?: number }> = ({
     );
 };
 
-export default Spinner;
+export default FmSpinner;

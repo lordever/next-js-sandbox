@@ -9,7 +9,7 @@ const AboutPage = () => {
         <>
             <SmallHero title="About"/>
 
-            <div className="flex flex-col gap-[72px] sm:gap-[140px] lg:gap-[120px] md:px-[97px] lg:px-[165px]">
+            <div className="landing-container">
                 <AboutHighlights/>
 
                 <AboutValueItems/>

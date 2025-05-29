@@ -35,7 +35,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
             <AuthProvider>
                 <DrawerProvider>
                     <Header/>
-                    <main className='overflow-x-hidden'>{children}</main>
+                    <main className='overflow-x-hidden overflow-y-hidden'>{children}</main>
                     <Footer/>
                 </DrawerProvider>
             </AuthProvider>

@@ -6,7 +6,7 @@ import FmLink from "@/components/common/link/link.component";
 import {usePathname} from "next/navigation";
 import FmButton from "@/components/common/button/button.component";
 import {getProviders, signIn, signOut, useSession} from "next-auth/react";
-import Spinner from "@/components/common/spinner/spinner.component";
+import FmSpinner from "@/components/common/spinner/spinner.component";
 
 const NavbarClient = () => {
     const {data: session, status} = useSession();
@@ -53,7 +53,7 @@ const NavbarClient = () => {
                 disabled={status === 'loading' || !providers}
                 onClick={handleAuthClick}
             >
-                {status === 'loading' && (<Spinner/>)}
+                {status === 'loading' && (<FmSpinner/>)}
                 {status === 'authenticated' && ('Sign out')}
                 {status === 'unauthenticated' && ('Sign in')}
             </FmButton>

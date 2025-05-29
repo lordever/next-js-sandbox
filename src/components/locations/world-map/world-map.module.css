@@ -1,0 +1,5 @@
+.container {
+    @apply flex flex-col gap-8 justify-center items-center
+    mt-[72px] md:mt-[144px] lg:mt-[120px]
+    w-full h-[543px] relative;
+}

@@ -2,7 +2,7 @@
 
 import React, {FC, useState} from 'react';
 import Image from "next/image";
-import cn from "classNames";
+import cn from "classnames";
 
 interface FmAccordionProps {
     title: string;

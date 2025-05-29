@@ -1,5 +1,5 @@
 import React, {FC, memo, PropsWithChildren} from 'react';
-import cn from 'classNames';
+import cn from 'classnames';
 
 interface StackProps extends PropsWithChildren {
     direction?: 'row' | 'column';

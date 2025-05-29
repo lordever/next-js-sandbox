@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import clsx from 'classNames';
+import clsx from 'classnames';
 
 interface LineProps {
     width: number;

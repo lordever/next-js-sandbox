@@ -8,7 +8,7 @@ interface ContactItemProps {
 
 const ContactItem: FC<ContactItemProps> = ({location, position}) => {
     return (
-        <div className='bg-snow px-10 py-8 flex items-center justify-between'>
+        <div className='bg-snow px-10 py-8 flex flex-col md:flex-row items-center justify-between'>
             <div className='flex flex-col gap-2'>
                 <h4 className='text-h4 text-dark-navy'>{position}</h4>
                 <p className='text-body1 text-dark-navy font-lexend'>

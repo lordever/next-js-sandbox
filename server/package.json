@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "license": "ISC",
+  "description": "",
+  "scripts": {
+    "run": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.11.0",
+    "lodash": "^4.17.21"
+  }
+}

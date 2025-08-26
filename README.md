@@ -1,7 +1,3 @@
-This is the sample project when I lernt next-js.
-
-The author of course is: Brad Traversy (https://www.youtube.com/traversymedia)
-
 ## Getting Started
 
 First, run the development server:

@@ -1,20 +1,23 @@
-import {HighlightModel} from "@/models/highlight.model";
+import { HighlightModel } from '@/models/highlight.model';
+import {
+  buildApiUrl,
+  getApiEndpoint,
+  API_CONFIG,
+  API_ENDPOINTS,
+} from '@/config/api.config';
 
 export const getHighlights = async (): Promise<HighlightModel | null> => {
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/api/highlights`, {
-            next: { revalidate: +(process.env.NEXT_CACHE_REVALIDATE_IN_SECONDS ?? '3600') },
-        });
-
-        if (!res.ok) {
-            console.error(`getHighlights fetch failed: ${res.status}`);
-            return null;
-        }
-
-        const result = await res.json();
-        return result as HighlightModel;
-    } catch (e) {
-        console.error('getHighlights error:', e);
-        return null;
-    }
+  try {
+    const res = await fetch(
+      buildApiUrl(getApiEndpoint(API_ENDPOINTS.HIGHLIGHTS)),
+      {
+        next: { revalidate: API_CONFIG.CACHE.REVALIDATE_SECONDS },
+      }
+    );
+    if (!res.ok) return null;
+    return (await res.json()) as HighlightModel;
+  } catch (e) {
+    console.error('getHighlights error:', e);
+    return null;
+  }
 };

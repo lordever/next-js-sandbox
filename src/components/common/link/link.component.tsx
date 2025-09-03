@@ -1,28 +1,28 @@
-import React, {FC, PropsWithChildren} from 'react';
-import Link, {LinkProps} from "next/link";
-import cn from "classnames";
+import React, { FC, PropsWithChildren } from 'react';
+import Link, { LinkProps } from 'next/link';
+import cn from 'classnames';
 
 interface FmLinkProps extends PropsWithChildren<LinkProps> {
-    className?: string;
-    active?: boolean;
+  className?: string;
+  active?: boolean;
 }
 
 const FmLink: FC<FmLinkProps> = ({
-                                     children,
-                                     className,
-                                     active = false,
-                                     ...rest
-                                 }) => {
-    const classes = cn(
-        active ? 'text-yellow' : 'text-dim-grey hover:text-yellow',
-        'text-body1'
-    )
+  children,
+  className,
+  active = false,
+  ...rest
+}) => {
+  const classes = cn(
+    active ? 'text-yellow' : 'text-dim-grey hover:text-yellow',
+    'text-body1'
+  );
 
-    return (
-        <Link className={classes} {...rest}>
-            {children}
-        </Link>
-    );
+  return (
+    <Link className={classes} {...rest}>
+      {children}
+    </Link>
+  );
 };
 
 export default FmLink;

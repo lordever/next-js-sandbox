@@ -2,6 +2,7 @@ package com.kotlin_spring_mongodb.kotlin_spring_mongodb.service
 
 import com.kotlin_spring_mongodb.kotlin_spring_mongodb.model.*
 import mu.KotlinLogging
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -15,9 +16,19 @@ class DataInitializationService(
     private val valueService: ValueService
 ) : CommandLineRunner {
     
+    @Value("\${app.database.clear-on-startup:false}")
+    private lateinit var clearOnStartup: String
+    
     private val logger = KotlinLogging.logger {}
     
     override fun run(vararg args: String?) {
+        val shouldClear = clearOnStartup.toBoolean()
+        
+        if (shouldClear) {
+            logger.info { "Clearing existing data..." }
+            clearAllData()
+        }
+        
         logger.info { "Initializing test data..." }
         
         // Initialize contacts
@@ -26,11 +37,11 @@ class DataInitializationService(
         // Initialize FAQs
         initializeFaqs()
         
-        // Initialize features
-        initializeFeatures()
-        
         // Initialize highlights
         initializeHighlights()
+        
+        // Initialize features
+        initializeFeatures()
         
         // Initialize values
         initializeValues()
@@ -87,19 +98,19 @@ class DataInitializationService(
     private fun initializeFeatures() {
         val features = listOf(
             Feature(
-                title = "Easy to use riding telemetry",
-                description = "The Scoot app is available with riding telemetry. This means it can show you your average speed, how long you've been using the scooter, your traveling distance, and many more things you would want to track.",
-                imagePath = "/images/telemetry.jpg"
+                title = "Locate with app",
+                description = "Use the app to find the nearest scooter to you. We are continuously placing scooters in the areas with most demand, so one should never be too far away.",
+                imagePath = "/icons/locate.svg"
             ),
             Feature(
-                title = "Coming to a city near you",
-                description = "Scoot is available in 4 major cities so far. We're expanding rapidly, so be sure to let us know if you want to see us in your hometown. We're aiming to let our scooters loose on 23 cities over the coming year.",
-                imagePath = "/images/near-you.jpg"
+                title = "Pick your scooter",
+                description = "We show the most important info for the scooters closest to you. So you know how much charge they have left and can see roughly how much it will cost.",
+                imagePath = "/icons/scooter.svg"
             ),
             Feature(
-                title = "Zero hassle payments",
-                description = "Our payment is as easy as one two three. We accept most credit cards and debit cards. You can also link your PayPal account inside the app. Need to pay later? No worries! You can defer payment for up to a month.",
-                imagePath = "/images/payments.jpg"
+                title = "Enjoy the ride",
+                description = "Scan the QR code and the bike will unlock. Retract the cable lock, put on a helmet, and you're off! Always lock bikes away from walkways and accessibility ramps.",
+                imagePath = "/icons/ride.svg"
             )
         )
         
@@ -112,64 +123,61 @@ class DataInitializationService(
     }
     
     private fun initializeHighlights() {
-        val highlights = listOf(
-            Highlight(
-                home = listOf(
-                    HighlightItem(
-                        title = "Locate with app",
-                        description = "Use the app to find the nearest scooter to you. We are continuously placing scooters in the areas with most demand, so one should never be too far away.",
-                        imagePath = "/images/locate.svg",
-                        imageAlt = "Locate with app"
-                    ),
-                    HighlightItem(
-                        title = "Pick your scooter",
-                        description = "We show the most important info for the scooters closest to you. So you know how much charge they have left and can see roughly how much it will cost.",
-                        imagePath = "/images/scooter.svg",
-                        imageAlt = "Pick your scooter"
-                    ),
-                    HighlightItem(
-                        title = "Enjoy the ride",
-                        description = "Scan the QR code and the bike will unlock. Retract the cable lock, put on a helmet, and you're off! Always lock bikes away from walkways and accessibility ramps.",
-                        imagePath = "/images/ride.svg",
-                        imageAlt = "Enjoy the ride"
-                    )
+        val highlight = Highlight(
+            home = listOf(
+                HighlightItem(
+                    title = "Easy to use riding telemetry",
+                    description = "The Scoot app is available with riding telemetry. This means it can show you your average speed, how long you've been using the scooter, your traveling distance, and many more things you would want to track.",
+                    imagePath = "/images/telemetry.jpg",
+                    imageAlt = "Easy to use riding telemetry"
                 ),
-                about = listOf(
-                    HighlightItem(
-                        title = "Mobility for the digital era",
-                        description = "Getting around should be simple (and even fun!) for everyone. We embrace technology to provide low cost, smart access to scooters at your fingertips.",
-                        imagePath = "/images/digital-era.jpg",
-                        imageAlt = "Digital era"
-                    ),
-                    HighlightItem(
-                        title = "Better urban living",
-                        description = "We're helping connect cities and bring people closer together. Our scooters are also fully-electric and we offset the minimal carbon footprint for each ride.",
-                        imagePath = "/images/better-living.jpg",
-                        imageAlt = "Better urban living"
-                    )
+                HighlightItem(
+                    title = "Coming to a city near you",
+                    description = "Scoot is available in 4 major cities so far. We're expanding rapidly, so be sure to let us know if you want to see us in your hometown. We're aiming to let our scooters loose on 23 cities over the coming year.",
+                    imagePath = "/images/near-you.jpg",
+                    imageAlt = "Coming to a city near you"
                 ),
-                careers = listOf(
-                    HighlightItem(
-                        title = "Our tech",
-                        description = "We're using cutting edge technology to drive accessible urban transportation forward. Our fully electric scooters are a joy to ride!",
-                        imagePath = "/images/our-tech.jpg",
-                        imageAlt = "Our tech"
-                    ),
-                    HighlightItem(
-                        title = "Our integrity",
-                        description = "We are fully committed to deliver a great yet safe, sustainable micro-mobility experience in every city we serve.",
-                        imagePath = "/images/our-integrity.jpg",
-                        imageAlt = "Our integrity"
-                    )
+                HighlightItem(
+                    title = "Zero hassle payments",
+                    description = "Our payment is as easy as one two three. We accept most credit cards and debit cards. You can also link your PayPal account inside the app. Need to pay later? No worries! You can defer payment for up to a month.",
+                    imagePath = "/images/payments.jpg",
+                    imageAlt = "Zero hassle payments"
+                )
+            ),
+            about = listOf(
+                HighlightItem(
+                    title = "Mobility for the digital era",
+                    description = "Getting around should be simple (and even fun!) for everyone. We embrace technology to provide low cost, smart access to scooters at your fingertips.",
+                    imagePath = "/images/digital-era.jpg",
+                    imageAlt = "Digital era"
+                ),
+                HighlightItem(
+                    title = "Better urban living",
+                    description = "We're helping connect cities and bring people closer together. Our scooters are also fully-electric and we offset the minimal carbon footprint for each ride.",
+                    imagePath = "/images/better-living.jpg",
+                    imageAlt = "Better urban living"
+                )
+            ),
+            careers = listOf(
+                HighlightItem(
+                    title = "Our tech",
+                    description = "We're using cutting edge technology to drive accessible urban transportation forward. Our fully electric scooters are a joy to ride!",
+                    imagePath = "/images/our-tech.jpg",
+                    imageAlt = "Our tech"
+                ),
+                HighlightItem(
+                    title = "Our integrity",
+                    description = "We are fully committed to deliver a great yet safe, sustainable micro-mobility experience in every city we serve.",
+                    imagePath = "/images/our-integrity.jpg",
+                    imageAlt = "Our integrity"
                 )
             )
         )
         
-        Flux.fromIterable(highlights)
-            .flatMap { highlightService.createHighlight(it) }
+        highlightService.createHighlight(highlight)
             .subscribe(
-                { highlight -> logger.info { "Created highlight" } },
-                { error -> logger.error(error) { "Error creating highlights" } }
+                { highlight -> logger.info { "Created highlight with ${highlight.home.size} home items, ${highlight.about.size} about items, ${highlight.careers.size} careers items" } },
+                { error -> logger.error(error) { "Error creating highlight" } }
             )
     }
     
@@ -202,4 +210,42 @@ class DataInitializationService(
                 { error -> logger.error(error) { "Error creating values" } }
             )
     }
+    
+    private fun clearAllData() {
+        logger.info { "Clearing contacts..." }
+        contactService.deleteAll()
+            .subscribe(
+                { logger.info { "Contacts cleared" } },
+                { error -> logger.error(error) { "Error clearing contacts" } }
+            )
+        
+        logger.info { "Clearing FAQs..." }
+        faqService.deleteAll()
+            .subscribe(
+                { logger.info { "FAQs cleared" } },
+                { error -> logger.error(error) { "Error clearing FAQs" } }
+            )
+        
+        logger.info { "Clearing highlights..." }
+        highlightService.deleteAll()
+            .subscribe(
+                { logger.info { "Highlights cleared" } },
+                { error -> logger.error(error) { "Error clearing highlights" } }
+            )
+        
+        logger.info { "Clearing features..." }
+        featureService.deleteAll()
+            .subscribe(
+                { logger.info { "Features cleared" } },
+                { error -> logger.error(error) { "Error clearing features" } }
+            )
+        
+        logger.info { "Clearing values..." }
+        valueService.deleteAll()
+            .subscribe(
+                { logger.info { "Values cleared" } },
+                { error -> logger.error(error) { "Error clearing values" } }
+            )
+    }
 }
+

@@ -20,4 +20,6 @@ class FeatureService(private val featureRepository: FeatureRepository) {
             .flatMap { featureRepository.save(feature.copy(id = id)) }
     
     fun deleteFeature(id: String): Mono<Void> = featureRepository.deleteById(id)
+    
+    fun deleteAll(): Mono<Void> = featureRepository.deleteAll()
 }

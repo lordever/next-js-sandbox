@@ -1,23 +1,23 @@
 import React from 'react';
-import AboutHighlights from "@/components/about/highlights/about-highlights.component";
-import SmallHero from "@/components/small-hero/small-hero.component";
-import AboutValueItems from "@/components/about/value-items/value-items.component";
-import AboutFaq from "@/components/about/faq/faq.component";
+import AboutHighlights from '@/components/about/highlights/about-highlights.component';
+import SmallHero from '@/components/small-hero/small-hero.component';
+import AboutValueItems from '@/components/about/value-items/value-items.component';
+import AboutFaq from '@/components/about/faq/faq.component';
 
 const AboutPage = () => {
-    return (
-        <>
-            <SmallHero title="About"/>
+  return (
+    <>
+      <SmallHero title="About" />
 
-            <div className="landing-container">
-                <AboutHighlights/>
+      <div className="landing-container">
+        <AboutHighlights />
 
-                <AboutValueItems/>
+        <AboutValueItems />
 
-                <AboutFaq/>
-            </div>
-        </>
-    );
+        <AboutFaq />
+      </div>
+    </>
+  );
 };
 
 export default AboutPage;

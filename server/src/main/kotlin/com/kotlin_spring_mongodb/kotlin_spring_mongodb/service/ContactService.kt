@@ -20,4 +20,6 @@ class ContactService(private val contactRepository: ContactRepository) {
             .flatMap { contactRepository.save(contact.copy(id = id)) }
     
     fun deleteContact(id: String): Mono<Void> = contactRepository.deleteById(id)
+    
+    fun deleteAll(): Mono<Void> = contactRepository.deleteAll()
 }

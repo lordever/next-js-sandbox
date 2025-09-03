@@ -20,4 +20,6 @@ class HighlightService(private val highlightRepository: HighlightRepository) {
             .flatMap { highlightRepository.save(highlight.copy(id = id)) }
     
     fun deleteHighlight(id: String): Mono<Void> = highlightRepository.deleteById(id)
+    
+    fun deleteAll(): Mono<Void> = highlightRepository.deleteAll()
 }

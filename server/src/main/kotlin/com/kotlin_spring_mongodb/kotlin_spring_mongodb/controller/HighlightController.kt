@@ -17,9 +17,9 @@ class HighlightController(private val highlightService: HighlightService) {
     private val logger = KotlinLogging.logger {}
     
     @GetMapping
-    fun getAllHighlights(): Flux<Highlight> {
+    fun getAllHighlights(): Mono<Highlight> {
         logger.info { "GET /api/highlights" }
-        return highlightService.getAllHighlights()
+        return highlightService.getAllHighlights().next()
     }
     
     @GetMapping("/{id}")

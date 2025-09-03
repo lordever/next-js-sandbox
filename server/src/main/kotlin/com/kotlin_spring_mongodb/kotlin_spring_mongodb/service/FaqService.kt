@@ -25,4 +25,6 @@ class FaqService(private val faqRepository: FaqRepository) {
             .flatMap { faqRepository.save(faq.copy(id = id)) }
     
     fun deleteFaq(id: String): Mono<Void> = faqRepository.deleteById(id)
+    
+    fun deleteAll(): Mono<Void> = faqRepository.deleteAll()
 }

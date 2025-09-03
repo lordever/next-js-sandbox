@@ -1,28 +1,28 @@
-import React, {FC} from 'react';
-import HeroDesktopImg from "@/assets/images/about-hero-desktop.jpg";
-import HeroTabletImg from "@/assets/images/about-hero-tablet.jpg";
-import HeroMobileImg from "@/assets/images/about-hero-mobile.jpg";
-import HeroImage from "@/components/hero-image/hero-image.component";
-import HeroCircles from "@/components/hero-circles/hero-circles.component";
+import React, { FC } from 'react';
+import HeroDesktopImg from '@/assets/images/about-hero-desktop.jpg';
+import HeroTabletImg from '@/assets/images/about-hero-tablet.jpg';
+import HeroMobileImg from '@/assets/images/about-hero-mobile.jpg';
+import HeroImage from '@/components/hero-image/hero-image.component';
+import HeroCircles from '@/components/hero-circles/hero-circles.component';
 
-const SmallHero: FC<{title: string}> = ({title}) => {
-    return (
-        <div className='relative overflow-x-hidden'>
-            <HeroImage
-                desktopImg={HeroDesktopImg}
-                tabletImg={HeroTabletImg}
-                mobileImg={HeroMobileImg}
-            />
+const SmallHero: FC<{ title: string }> = ({ title }) => {
+  return (
+    <div className="relative overflow-x-hidden">
+      <HeroImage
+        desktopImg={HeroDesktopImg}
+        tabletImg={HeroTabletImg}
+        mobileImg={HeroMobileImg}
+      />
 
-            <div className="flex items-center justify-center md:justify-between absolute inset-0 px-[165px] py-[72px]">
-                <h1 className='text-h1 text-white'>{title}</h1>
+      <div className="flex items-center justify-center md:justify-between absolute inset-0 px-[165px] py-[72px]">
+        <h1 className="text-h1 text-white">{title}</h1>
 
-                <div className="hidden md:block absolute -right-8">
-                    <HeroCircles />
-                </div>
-            </div>
+        <div className="hidden md:block absolute -right-8">
+          <HeroCircles />
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default SmallHero;

@@ -1,45 +1,48 @@
 import 'react-toastify/dist/ReactToastify.css';
 import 'photoswipe/dist/photoswipe.css';
 import '@/assets/styles/global.css';
-import {Lexend_Deca, Space_Mono} from 'next/font/google';
-import {ReactNode} from "react";
+import { Lexend_Deca, Space_Mono } from 'next/font/google';
+import { ReactNode } from 'react';
 
-import '../assets/styles/global.css'
-import Header from "@/components/header/header.component";
-import DrawerProvider from "@/provider/drawer.provider";
-import Footer from "@/components/footer/footer.component";
-import AuthProvider from "@/components/auth-provider/auth-provider.component";
+import '../assets/styles/global.css';
+import Header from '@/components/header/header.component';
+import DrawerProvider from '@/provider/drawer.provider';
+import Footer from '@/components/footer/footer.component';
+import AuthProvider from '@/components/auth-provider/auth-provider.component';
 
 const spaceMono = Space_Mono({
-    subsets: ['latin'],
-    display: 'swap',
-    weight: '400',
-    variable: '--font-space-mono',
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '400',
+  variable: '--font-space-mono',
 });
 
 const lexendDeca = Lexend_Deca({
-    subsets: ['latin'],
-    display: 'swap',
-    variable: '--font-lexend-deca',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-lexend-deca',
 });
 
 export const metadata = {
-    title: 'Next.js Sandbox',
-    description: 'A playground project for learning and experimenting with Next.js 14 App Router',
+  title: 'Next.js Sandbox',
+  description:
+    'A playground project for learning and experimenting with Next.js 14 App Router',
 };
 
-export default function RootLayout({children}: { children: ReactNode }) {
-    return (
-        <html lang="en" className={`${spaceMono.variable} ${lexendDeca.variable}`}>
-        <body className="bg-white">
-            <AuthProvider>
-                <DrawerProvider>
-                    <Header/>
-                    <main className='overflow-x-hidden overflow-y-hidden'>{children}</main>
-                    <Footer/>
-                </DrawerProvider>
-            </AuthProvider>
-        </body>
-        </html>
-    );
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" className={`${spaceMono.variable} ${lexendDeca.variable}`}>
+      <body className="bg-white">
+        <AuthProvider>
+          <DrawerProvider>
+            <Header />
+            <main className="overflow-x-hidden overflow-y-hidden">
+              {children}
+            </main>
+            <Footer />
+          </DrawerProvider>
+        </AuthProvider>
+      </body>
+    </html>
+  );
 }

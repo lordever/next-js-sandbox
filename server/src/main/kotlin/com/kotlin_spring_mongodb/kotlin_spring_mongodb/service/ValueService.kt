@@ -20,4 +20,6 @@ class ValueService(private val valueRepository: ValueRepository) {
             .flatMap { valueRepository.save(value.copy(id = id)) }
     
     fun deleteValue(id: String): Mono<Void> = valueRepository.deleteById(id)
+    
+    fun deleteAll(): Mono<Void> = valueRepository.deleteAll()
 }

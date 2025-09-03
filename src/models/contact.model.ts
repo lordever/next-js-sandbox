@@ -1,5 +1,5 @@
 export interface ContactModel {
-    _id: string;
-    position: string;
-    location: string;
+  _id: string;
+  position: string;
+  location: string;
 }

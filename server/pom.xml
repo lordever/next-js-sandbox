@@ -8,10 +8,10 @@
 		<version>3.3.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.scoot-app-be</groupId>
-	<artifactId>scoot-app-be</artifactId>
+	<groupId>com.scoot-app-bff</groupId>
+	<artifactId>scoot-app-bff</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>scoot-app-be</name>
+	<name>scoot-app-bff</name>
 	<description>Scoot App BE</description>
 	<url/>
 	<licenses>

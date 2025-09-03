@@ -2,10 +2,11 @@ package com.kotlin_spring_mongodb.kotlin_spring_mongodb.service
 
 import com.kotlin_spring_mongodb.kotlin_spring_mongodb.model.*
 import mu.KotlinLogging
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import org.springframework.beans.factory.annotation.Value
 
 @Service
 class DataInitializationService(
@@ -15,41 +16,46 @@ class DataInitializationService(
     private val highlightService: HighlightService,
     private val valueService: ValueService
 ) : CommandLineRunner {
-    
+
     @Value("\${app.database.clear-on-startup:false}")
     private lateinit var clearOnStartup: String
-    
+
     private val logger = KotlinLogging.logger {}
-    
+
     override fun run(vararg args: String?) {
         val shouldClear = clearOnStartup.toBoolean()
-        
-        if (shouldClear) {
-            logger.info { "Clearing existing data..." }
-            clearAllData()
-        }
-        
-        logger.info { "Initializing test data..." }
-        
-        // Initialize contacts
-        initializeContacts()
-        
-        // Initialize FAQs
-        initializeFaqs()
-        
-        // Initialize highlights
-        initializeHighlights()
-        
-        // Initialize features
-        initializeFeatures()
-        
-        // Initialize values
-        initializeValues()
-        
-        logger.info { "Data initialization completed" }
+
+        val pipeline = (if (shouldClear) clearAllDataMono() else Mono.empty())
+            .doOnSubscribe { logger.info { "Data initializing started..." } }
+
+            // Contacts initialization
+            .thenMany(initializeContactsFlux())
+            .doOnNext { logger.info { "Contact created: ${it.position} in ${it.location}" } }
+
+            // Faq's initialization
+            .thenMany(initializeFaqsFlux())
+            .doOnNext { logger.info { "FAQ created for category: ${it.category}" } }
+
+            // Features initialization
+            .thenMany(initializeFeaturesFlux())
+            .doOnNext { logger.info { "Feature created: ${it.title}" } }
+
+            // Values initialization
+            .thenMany(initializeValuesFlux())
+            .doOnNext { logger.info { "Value created: ${it.title}" } }
+
+            // Highlights initialization
+            .then(initializeHighlightsMono())
+            .doOnNext { logger.info { "Highlights created" } }
+
+            .then()
+            .doOnError { logger.error(it) { "Error during initialization" } }
+            .doOnSuccess { logger.info { "Data initialization completed" } }
+
+        pipeline.block()
     }
-    
-    private fun initializeContacts() {
+
+    private fun initializeContactsFlux(): Flux<Contact> {
         val contacts = listOf(
             Contact(position = "General Manager", location = "Jakarta, Indonesia"),
             Contact(position = "UI/UX Designer", location = "Yokohama, Japan"),
@@ -58,44 +64,55 @@ class DataInitializationService(
             Contact(position = "Fleet Supervisor", location = "Jakarta, Indonesia"),
             Contact(position = "UX Analyst", location = "London, United Kingdom")
         )
-        
-        Flux.fromIterable(contacts)
-            .flatMap { contactService.createContact(it) }
-            .subscribe(
-                { contact -> logger.info { "Created contact: ${contact.position} in ${contact.location}" } },
-                { error -> logger.error(error) { "Error creating contacts" } }
-            )
+
+        return Flux
+            .fromIterable(contacts)
+            .concatMap { contactService.createContact(it) }
     }
-    
-    private fun initializeFaqs() {
+
+    private fun initializeFaqsFlux(): Flux<Faq> {
         val faqs = listOf(
             Faq(
                 category = "How it works",
                 items = listOf(
-                    FaqItem(title = "How do I download the app?", description = "To download the Scoot app, you can search \"Scoot\" in both the App and Google Play stores. An SMS will be sent to your phone with a link to download the Scoot app."),
-                    FaqItem(title = "Can I find a nearby Scoots?", description = "Definitely! Simply open up the app and allow us to find your location while using it. We'll show you all of the closest Scoots and some extra useful information."),
-                    FaqItem(title = "Do I need a license to ride?", description = "Yup! We provide information inside the app regarding local laws and the license you need to be able to ride our Scoots.")
+                    FaqItem(
+                        title = "How do I download the app?",
+                        description = "To download the Scoot app, you can search \"Scoot\" in both the App and Google Play stores. An SMS will be sent to your phone with a link to download the Scoot app."
+                    ),
+                    FaqItem(
+                        title = "Can I find a nearby Scoots?",
+                        description = "Definitely! Simply open up the app and allow us to find your location while using it. We'll show you all of the closest Scoots and some extra useful information."
+                    ),
+                    FaqItem(
+                        title = "Do I need a license to ride?",
+                        description = "Yup! We provide information inside the app regarding local laws and the license you need to be able to ride our Scoots."
+                    )
                 )
             ),
             Faq(
                 category = "Safe driving",
                 items = listOf(
-                    FaqItem(title = "Should I wear a helmet?", description = "Yes, please do! All cities have different laws. But we strongly strongly strongly recommend always wearing a helmet regardless of the local laws. We like you and we want you to be as safe as possible while Scooting."),
-                    FaqItem(title = "How about the rules & regulations?", description = "Now is not the time to be a rule breaker. Be sure you're complying with all local laws and regulations. Also, just a heads up: we are actively monitoring cities, and if the rules change, so do we."),
-                    FaqItem(title = "What if I damage my Scoot?", description = "Be sure to read our terms and conditions carefully. Not the most fun job we know but we make it as clear as possible. There's an option to add insurance for each trip, or you can sign up for annual insurance if you're a regular Scooter.")
+                    FaqItem(
+                        title = "Should I wear a helmet?",
+                        description = "Yes, please do! All cities have different laws. But we strongly strongly strongly recommend always wearing a helmet regardless of the local laws. We like you and we want you to be as safe as possible while Scooting."
+                    ),
+                    FaqItem(
+                        title = "How about the rules & regulations?",
+                        description = "Now is not the time to be a rule breaker. Be sure you're complying with all local laws and regulations. Also, just a heads up: we are actively monitoring cities, and if the rules change, so do we."
+                    ),
+                    FaqItem(
+                        title = "What if I damage my Scoot?",
+                        description = "Be sure to read our terms and conditions carefully. Not the most fun job we know but we make it as clear as possible. There's an option to add insurance for each trip, or you can sign up for annual insurance if you're a regular Scooter."
+                    )
                 )
             )
         )
-        
-        Flux.fromIterable(faqs)
-            .flatMap { faqService.createFaq(it) }
-            .subscribe(
-                { faq -> logger.info { "Created FAQ for category: ${faq.category}" } },
-                { error -> logger.error(error) { "Error creating FAQs" } }
-            )
+
+        return Flux.fromIterable(faqs)
+            .concatMap { faqService.createFaq(it) }
     }
-    
-    private fun initializeFeatures() {
+
+    private fun initializeFeaturesFlux(): Flux<Feature> {
         val features = listOf(
             Feature(
                 title = "Locate with app",
@@ -113,16 +130,12 @@ class DataInitializationService(
                 imagePath = "/icons/ride.svg"
             )
         )
-        
-        Flux.fromIterable(features)
-            .flatMap { featureService.createFeature(it) }
-            .subscribe(
-                { feature -> logger.info { "Created feature: ${feature.title}" } },
-                { error -> logger.error(error) { "Error creating features" } }
-            )
+
+        return Flux.fromIterable(features)
+            .concatMap { featureService.createFeature(it) }
     }
-    
-    private fun initializeHighlights() {
+
+    private fun initializeHighlightsMono(): Mono<Highlight> {
         val highlight = Highlight(
             home = listOf(
                 HighlightItem(
@@ -173,15 +186,11 @@ class DataInitializationService(
                 )
             )
         )
-        
-        highlightService.createHighlight(highlight)
-            .subscribe(
-                { highlight -> logger.info { "Created highlight with ${highlight.home.size} home items, ${highlight.about.size} about items, ${highlight.careers.size} careers items" } },
-                { error -> logger.error(error) { "Error creating highlight" } }
-            )
+
+        return highlightService.createHighlight(highlight)
     }
-    
-    private fun initializeValues() {
+
+    private fun initializeValuesFlux(): Flux<com.kotlin_spring_mongodb.kotlin_spring_mongodb.model.Value> {
         val values = listOf(
             Value(
                 title = "Our tech",
@@ -202,50 +211,18 @@ class DataInitializationService(
                 imageAlt = "Community"
             )
         )
-        
-        Flux.fromIterable(values)
-            .flatMap { valueService.createValue(it) }
-            .subscribe(
-                { value -> logger.info { "Created value: ${value.title}" } },
-                { error -> logger.error(error) { "Error creating values" } }
-            )
+
+        return Flux.fromIterable(values)
+            .concatMap { valueService.createValue(it) }
     }
-    
-    private fun clearAllData() {
-        logger.info { "Clearing contacts..." }
-        contactService.deleteAll()
-            .subscribe(
-                { logger.info { "Contacts cleared" } },
-                { error -> logger.error(error) { "Error clearing contacts" } }
-            )
-        
-        logger.info { "Clearing FAQs..." }
-        faqService.deleteAll()
-            .subscribe(
-                { logger.info { "FAQs cleared" } },
-                { error -> logger.error(error) { "Error clearing FAQs" } }
-            )
-        
-        logger.info { "Clearing highlights..." }
-        highlightService.deleteAll()
-            .subscribe(
-                { logger.info { "Highlights cleared" } },
-                { error -> logger.error(error) { "Error clearing highlights" } }
-            )
-        
-        logger.info { "Clearing features..." }
-        featureService.deleteAll()
-            .subscribe(
-                { logger.info { "Features cleared" } },
-                { error -> logger.error(error) { "Error clearing features" } }
-            )
-        
-        logger.info { "Clearing values..." }
-        valueService.deleteAll()
-            .subscribe(
-                { logger.info { "Values cleared" } },
-                { error -> logger.error(error) { "Error clearing values" } }
-            )
-    }
+
+    private fun clearAllDataMono(): Mono<Void> =
+        Mono.`when`(
+            contactService.deleteAll(),
+            faqService.deleteAll(),
+            highlightService.deleteAll(),
+            featureService.deleteAll(),
+            valueService.deleteAll()
+        ).then()
 }
 
